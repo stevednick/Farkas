@@ -364,14 +364,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 998639652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7142fed43064ea19f4659694dc0e7c, type: 3}
+  m_Script: {fileID: 11500000, guid: fa91bc39b55714cebb93fa93f5661d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollNotePrefab: {fileID: 1057095648098474, guid: 8b77fe54f7225425c9dfd6084f13fe01,
-    type: 2}
   linePrefab: {fileID: 1068038517928936, guid: ebbd8a8c2ae7a4a45908131523196039, type: 2}
-  lineLength: 30
-  lineWidth: 0.12
+  lineLength: 20
 --- !u!114 &998639658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,25 +377,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 998639652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46fad10d0c8664237bdcd96f68dd97e4, type: 3}
+  m_Script: {fileID: 11500000, guid: 44a565cb7bba54681857367e73f5de09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteDelay: 0
-  staff: {fileID: 0}
-  counter: {fileID: 0}
-  buttonText: {fileID: 0}
-  countInText: {fileID: 0}
-  isPaused: 0
-  staffMaterial: {fileID: 0}
-  noteMaterial: {fileID: 0}
-  clefMaterial: {fileID: 0}
-  mainCamera: {fileID: 0}
-  startup: 0
-  displayTimer: 0
-  finished: 0
-  globalData: {fileID: 0}
-  colourController: {fileID: 0}
-  noteController: {fileID: 0}
+  spherePrefab: {fileID: 1322419538275508, guid: b39b6cb131c864d08b349526dfb65575,
+    type: 2}
 --- !u!1 &1051870324
 GameObject:
   m_ObjectHideFlags: 0

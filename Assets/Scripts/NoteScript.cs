@@ -61,5 +61,8 @@ public class NoteScript : MonoBehaviour {
 		}
 		*/
 		Move();
+		if(transform.position.x < -15){
+			Destroy(gameObject);
+		}
 	}
 }
