@@ -5,7 +5,6 @@ using UnityEngine;
 public class NoteController : MonoBehaviour {
 	[SerializeField]
 	private GlobalData globalData;
-
 	[SerializeField]
 	private SemitoneStore semitoneStore;
 

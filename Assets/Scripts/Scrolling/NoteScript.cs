@@ -1,25 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class NoteScript : MonoBehaviour {
+public class NoteScript : MovingObject { // Tidy this up when you're more awake. This is too confusing for the train journey! 
 
 	[SerializeField]
 	private GameObject notePrefab;
 	[SerializeField]
 	private GameObject linePrefab;
 	private int position;
-	private float speed;
-	void Start () {
+	public override void Start () {
+
+		base.Start();
 		notePrefab.transform.localScale = new Vector3(Tools.lineGap, Tools.lineGap, 1);
 		}
 
-	public void NoteStartup(int pos, string accidental, float s){
+	public void NoteStartup(int pos, string accidental){
 		PositionNote(pos);
 		SortLedgerLines(pos);
 		notePrefab.transform.Find("Sharp").gameObject.SetActive(accidental == "sharp");
 		notePrefab.transform.Find("Flat").gameObject.SetActive(accidental == "flat");
-		speed = s;
 	}
 
 	void PositionNote(int pos){
@@ -40,29 +38,8 @@ public class NoteScript : MonoBehaviour {
     private void DrawLedgerLine(int multiplier)
     {
         GameObject ledger = Instantiate(linePrefab, transform.position + new Vector3(0, Tools.lineGap * multiplier, 0), transform.rotation);
-        ledger.transform.localScale = new Vector3(Tools.ledgerLength, Tools.lineWidth, 1);
+        ledger.transform.localScale = new Vector3(Tools.ledgerLength * Tools.lineGap, Tools.lineWidth, 1);
         ledger.transform.gameObject.SetActive(true);
         ledger.transform.parent = transform;
     }
-
-	void Move(){
-		transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime);
-	}
-
-    void Update () {
-		/*
-		if(Input.GetKeyDown("down")){
-			position --;
-			NoteStartup(position, "sharp");
-		}
-		if(Input.GetKeyDown("up")){
-			position ++;
-			NoteStartup(position, "flat");
-		}
-		*/
-		Move();
-		if(transform.position.x < -15){
-			Destroy(gameObject);
-		}
-	}
 }

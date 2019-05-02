@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Tools{
 
-	public static float lineGap = 0.7f;
-	public static float ledgerLength = 1.5f;
+	public static float lineGap = .6f;
+	public static float ledgerLength = 2.1f;
 	public static float lineWidth = 0.12f;
 	public static int maxLinesFromMiddle = 13;
 	public static string[] ledgerLinesText = new string[6]{

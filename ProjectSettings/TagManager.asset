@@ -8,6 +8,9 @@ TagManager:
   - Text
   - Slider
   - Background
+  - ClefCollider
+  - Clef
+  - ObjectKillCollider
   layers:
   - Default
   - TransparentFX

@@ -94,6 +94,12 @@ public class MenuScript : MonoBehaviour {
         SaveSliderDetails();
         StartCoroutine(colourController.SceneChange("Main"));
     }
+	public void ToScrollingScene()
+    {
+        SaveSliderDetails();
+        StartCoroutine(colourController.SceneChange("Scrolling"));
+    }
+
 
     private void SaveSliderDetails()
     {
