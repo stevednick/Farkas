@@ -7,14 +7,19 @@ public class ScrollSceneControl : MonoBehaviour {
 	private BarBuilder barBuilder;
 	private ColourController colourController;
 	private float nextBarTime = 0f;
+	private float nextBeat = 0f;
 	private float barDuration;
 	private GlobalData globalData;
 	public Camera mainCamera;
 	public Camera UICamera; 
 	public Material[] itemMaterials;
+	public GameObject flashCamera;
+	private CameraFlash cameraFlash;
+	private FlashController flashController;
 
 
 	void Start () {
+
 		staffBuilder = GetComponent<StaffBuilder>();
 		barBuilder = GetComponent<BarBuilder>();
 		colourController = GetComponent<ColourController>();
@@ -25,14 +30,27 @@ public class ScrollSceneControl : MonoBehaviour {
 		colourController.SortColours();
 		UICamera.backgroundColor = mainCamera.backgroundColor;
 		staffBuilder.GenerateStaff();
+		cameraFlash = flashCamera.GetComponent<CameraFlash>();
+		flashController = GetComponent<FlashController>();
+
+	}
+
+	void Awake()
+	{
+		nextBarTime = Time.time;
+		nextBeat = Time.time;
 	}
 	
-	
-	void Update () {
+	 	void Update () {
 		if(Time.time > nextBarTime){
-			nextBarTime = Time.time + FindBarDuration();
+			nextBarTime = nextBarTime + FindBarDuration();
 			barBuilder.BuildBar();
 		}
+		if(Time.time > nextBeat){
+			flashController.StartFlash(5);
+			nextBeat = nextBeat + FindBarDuration()/4f; 
+		}
+		
 	}
 
 	private float FindBarDuration(){

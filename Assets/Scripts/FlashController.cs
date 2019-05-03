@@ -30,8 +30,12 @@ public class FlashController : MonoBehaviour {
 			flash.GetComponent<Renderer>().material.color = Color.green;
 			source.PlayOneShot(highTick);
 			StartCoroutine(Flash(flash, flashScale[0], flashScale[2], flashDuration, true));
-		}else{
+		}else if(beat <= 4){
 			flash.GetComponent<Renderer>().material.color = Color.red;
+			source.PlayOneShot(lowTick);
+			StartCoroutine(Flash(flash, flashScale[0], flashScale[1], flashDuration, false));
+		}else{
+			flash.GetComponent<Renderer>().material.color = GameObject.FindGameObjectWithTag("GameController").GetComponent<ColourController>().getItem();
 			source.PlayOneShot(lowTick);
 			StartCoroutine(Flash(flash, flashScale[0], flashScale[1], flashDuration, false));
 		}

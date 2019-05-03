@@ -19,13 +19,14 @@ public class BarBuilder : MonoBehaviour {
 	}
 	public void BuildBar(){
 		Tools.Note nextNote = NextNote();
+		Dictionary<string, float> barToUse = nextNote.clef == lastClef ? BarLayouts.noClef : BarLayouts.clefAfterBarline;
+		lastClef = nextNote.clef;
 		float barWidth = BarLayouts.beatSpacing * BarLayouts.beatsPerBar;
-		foreach(KeyValuePair<string, float> value in BarLayouts.clefBeforeStaff){
+		foreach(KeyValuePair<string, float> value in barToUse){
 			if(value.Key == "BarLine"){
 				GameObject barLine = Instantiate(barLinePrefab, transform.position + new Vector3(startX + (barWidth * value.Value), 0, 0), Quaternion.identity);
 				barLine.transform.parent = transform;
-				barLine.transform.localScale = new Vector3(Tools.lineWidth, Tools.lineGap * 4, 0.2f);
-				
+				barLine.transform.localScale = new Vector3(Tools.lineWidth, Tools.lineGap * 4, 0.2f);	
 			}
 			if(value.Key == "Note"){
 				GameObject note = Instantiate(notePrefab, transform.position + new Vector3(startX + (barWidth * value.Value), 0, 0), Quaternion.identity);
@@ -37,15 +38,12 @@ public class BarBuilder : MonoBehaviour {
 				noteScript.NoteStartup(nextNote.position, acc);
 				
 			}
-			if(value.Key == "Clef"){ 
-				if(nextNote.clef != lastClef){
-					lastClef = nextNote.clef;
-					GameObject clef = Instantiate(clefPrefab, transform.position + new Vector3(startX + (barWidth * value.Value), 0, 0), Quaternion.identity);
-					clef.transform.parent = transform; 
-					ClefScript clefScript = clef.GetComponent<ClefScript>();
-					clefScript.ShowClef(nextNote.clef);
-					
-				}
+			if(value.Key == "Clef"){ 	
+				lastClef = nextNote.clef;
+				GameObject clef = Instantiate(clefPrefab, transform.position + new Vector3(startX + (barWidth * value.Value), 0, 0), Quaternion.identity);
+				clef.transform.parent = transform; 
+				ClefScript clefScript = clef.GetComponent<ClefScript>();
+				clefScript.ShowClef(nextNote.clef);
 			}
 			if(value.Key == "CRest"){
 				GameObject crotchetRest = Instantiate(crotchetRestPrefab, transform.position + new Vector3(startX + (barWidth * value.Value), 0, 0), Quaternion.identity);

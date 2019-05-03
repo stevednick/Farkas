@@ -19,11 +19,17 @@ public class StaffBuilder : MonoBehaviour {
 	public float clefPosition;
 	public GameObject objectKillColliderPrefab;
 	public float objectKillPosition;
+	public GameObject arrowPrefab;
+	public float arrowX;
 
 
 	void DrawLines()
-    { // Tidy this bugger up! 
+    {
         float width = GetScreenWidth();
+		for(int i=0; i<5; i++){
+			DrawLine(i);
+		}
+		/*
         line0 = Instantiate(linePrefab, transform.position + new Vector3(0, -Tools.lineGap * 2, 0), transform.rotation);
         line1 = Instantiate(linePrefab, transform.position + new Vector3(0, -Tools.lineGap, 0), transform.rotation);
         line2 = Instantiate(linePrefab, transform.position, transform.rotation);
@@ -39,10 +45,18 @@ public class StaffBuilder : MonoBehaviour {
         line2.transform.parent = transform;
         line3.transform.parent = transform;
         line4.transform.parent = transform;
+		*/
 		barLine = Instantiate(linePrefab, transform.position + new Vector3(- width/2f + Tools.lineWidth, 0, 0), transform.rotation);
 		barLine.transform.localScale = new Vector3(Tools.lineWidth * 2, Tools.lineGap * 4, 1);
 		barLine.transform.parent = transform;
     }
+
+	void DrawLine(int lineNumber){
+		 GameObject line = Instantiate(linePrefab, transform.position + new Vector3(0, Tools.lineGap * (lineNumber - 2), 0), transform.rotation);
+		 line.transform.localScale = new Vector3(GetScreenWidth(), Tools.lineWidth, 1);
+		 line.transform.parent = transform;
+
+	}
 
 	void SetUpColliders(){
 		GameObject clefCollider = Instantiate(clefColliderPrefab, transform.position + new Vector3(-GetScreenWidth()/2f + clefPosition, 0, 0), transform.rotation);
@@ -68,6 +82,12 @@ public class StaffBuilder : MonoBehaviour {
  		}		
 		DrawLines();
 		SetUpColliders();
+		PlaceArrow();
+	}
+	public void PlaceArrow(){
+		GameObject arrow = Instantiate(arrowPrefab, transform.position + new Vector3(arrowX, 1, 0), transform.rotation);
+		arrow.transform.localScale = new Vector3(Tools.lineGap, Tools.lineGap, 0.2f);
+		arrow.transform.parent = transform;
 	}
 
 }
