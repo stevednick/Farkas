@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-public class NoteScript : MovingObject { // Tidy this up when you're more awake. This is too confusing for the train journey! 
+public class NoteScript : MovingObject {
 
 	[SerializeField]
 	private GameObject notePrefab;
 	[SerializeField]
 	private GameObject linePrefab;
 	private int position;
+	Vector3 topPoint;
 	public override void Start () {
 
 		base.Start();
@@ -18,6 +19,15 @@ public class NoteScript : MovingObject { // Tidy this up when you're more awake.
 		SortLedgerLines(pos);
 		notePrefab.transform.Find("Sharp").gameObject.SetActive(accidental == "sharp");
 		notePrefab.transform.Find("Flat").gameObject.SetActive(accidental == "flat");
+		Transform top = null;
+		if(pos > 0){
+			top = notePrefab.transform.Find("ICTop").transform;
+		}else{
+			top = notePrefab.transform.Find("CrotchetTop").transform;
+		}
+		topPoint = top.position;
+		Debug.Log(topPoint);
+		Debug.Log(top.localPosition);
 	}
 
 	void PositionNote(int pos){
@@ -42,4 +52,8 @@ public class NoteScript : MovingObject { // Tidy this up when you're more awake.
         ledger.transform.gameObject.SetActive(true);
         ledger.transform.parent = transform;
     }
+	public Vector3 getHighestPoint(){
+
+		return topPoint;
+	}
 }

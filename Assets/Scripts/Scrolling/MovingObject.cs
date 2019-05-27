@@ -34,9 +34,6 @@ public abstract class MovingObject : MonoBehaviour, IObjectBehaviour {
 	
 	public virtual void Update () {
 		Move();
-		if(transform.position.x < - 20){
-			Kill();
-		}
 	}
 
 	protected float GetSpeed(){

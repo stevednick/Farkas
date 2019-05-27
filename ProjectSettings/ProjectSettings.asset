@@ -162,7 +162,7 @@ PlayerSettings:
     iOS: com.weststreetgamestudios.farkas
   buildNumber:
     iOS: 17
-  AndroidBundleVersionCode: 14
+  AndroidBundleVersionCode: 17
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

@@ -47,7 +47,7 @@ public class ScrollSceneControl : MonoBehaviour {
 			barBuilder.BuildBar();
 		}
 		if(Time.time > nextBeat){
-			flashController.StartFlash(5);
+			//flashController.StartFlash(5);
 			nextBeat = nextBeat + FindBarDuration()/4f; 
 		}
 		

@@ -21,6 +21,7 @@ public class StaffBuilder : MonoBehaviour {
 	public float objectKillPosition;
 	public GameObject arrowPrefab;
 	public float arrowX;
+	public GameObject SpherePrefab;
 
 
 	void DrawLines()
@@ -29,23 +30,7 @@ public class StaffBuilder : MonoBehaviour {
 		for(int i=0; i<5; i++){
 			DrawLine(i);
 		}
-		/*
-        line0 = Instantiate(linePrefab, transform.position + new Vector3(0, -Tools.lineGap * 2, 0), transform.rotation);
-        line1 = Instantiate(linePrefab, transform.position + new Vector3(0, -Tools.lineGap, 0), transform.rotation);
-        line2 = Instantiate(linePrefab, transform.position, transform.rotation);
-        line3 = Instantiate(linePrefab, transform.position + new Vector3(0, Tools.lineGap, 0), transform.rotation);
-        line4 = Instantiate(linePrefab, transform.position + new Vector3(0, Tools.lineGap * 2, 0), transform.rotation);
-        line0.transform.localScale = new Vector3(width, Tools.lineWidth, 1);
-        line1.transform.localScale = new Vector3(width, Tools.lineWidth, 1);
-        line2.transform.localScale = new Vector3(width, Tools.lineWidth, 1);
-        line3.transform.localScale = new Vector3(width, Tools.lineWidth, 1);
-        line4.transform.localScale = new Vector3(width, Tools.lineWidth, 1);
-        line0.transform.parent = transform;
-        line1.transform.parent = transform;
-        line2.transform.parent = transform;
-        line3.transform.parent = transform;
-        line4.transform.parent = transform;
-		*/
+
 		barLine = Instantiate(linePrefab, transform.position + new Vector3(- width/2f + Tools.lineWidth, 0, 0), transform.rotation);
 		barLine.transform.localScale = new Vector3(Tools.lineWidth * 2, Tools.lineGap * 4, 1);
 		barLine.transform.parent = transform;
@@ -82,12 +67,17 @@ public class StaffBuilder : MonoBehaviour {
  		}		
 		DrawLines();
 		SetUpColliders();
-		PlaceArrow();
+		PlaceSphere();
+		//PlaceArrow();
 	}
 	public void PlaceArrow(){
 		GameObject arrow = Instantiate(arrowPrefab, transform.position + new Vector3(arrowX, 1, 0), transform.rotation);
 		arrow.transform.localScale = new Vector3(Tools.lineGap, Tools.lineGap, 0.2f);
 		arrow.transform.parent = transform;
+	}
+	void PlaceSphere(){
+		GameObject bounce = Instantiate(SpherePrefab, transform.position + new Vector3(-1f, 1.5f, 0), transform.rotation);
+		bounce.transform.parent = transform;
 	}
 
 }
